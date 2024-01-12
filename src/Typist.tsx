@@ -1,32 +1,46 @@
 import { Setter } from "solid-js";
 
 export class Typist {
-  private store: number[];
-  private click = new Audio("click.mp3");
-  private shutter_click = new Audio("shutter-click.mp3");
-  constructor() {
-    this.store = [0];
+  private next_time: number;
+  private miliseconds_between_letters : number;
+  private static click = new Audio("click.mp3");
+  private static shutter_click = new Audio("shutter-click.mp3");
+  private static times_between_clicks = [70, 140, 180, 220];
+  constructor(miliseconds : number) {
+    this.next_time = 0;
+    this.miliseconds_between_letters = miliseconds;
   }
-
-  async display_sound(i: number) {
-    if (i % 4 === 0) {
-      await this.click.play();
+  private what_and_when_to_speak(char: string): [number, HTMLAudioElement] {
+    if (char === " ") {
+      return [10, Typist.click];
+    } else if (char === char.toUpperCase()) {
+      return [this.miliseconds_between_letters, Typist.shutter_click];
     } else {
-      await this.shutter_click.play();
+      return [
+        Typist
+          .times_between_clicks[
+            new Date().getMilliseconds() % Typist.times_between_clicks.length
+          ],
+        Typist.click,
+      ];
     }
   }
 
-  private letterTime(i: number): number {
-    return i * 100;
+  display_sound(char: string) {
+    const [time, sound] = this.what_and_when_to_speak(char);
+    setTimeout(async () => {
+      await sound.play();
+    }, time);
   }
-  private prev_length(): number {
-    return this.store.reduce((acc, x) => acc + x);
+
+  private letterTime(i: number): number {
+    return i * this.miliseconds_between_letters;
   }
   private previous_time(): number {
-    if (this.prev_length() === 0) {
-      return 0;
+    if (this.next_time) {
+      return this.letterTime(this.next_time);
     } else {
-      return this.letterTime(this.prev_length());
+      return 0;
     }
   }
 
@@ -34,18 +48,13 @@ export class Typist {
     str: string,
     set_str: Setter<string>,
   ) {
-    console.log(`
-        name : ${str}
-        this time : ${this.letterTime(str.length)}
-        previous length : ${this.previous_time()}
-        total time : ${this.letterTime(str.length) + this.previous_time()} 
-        `);
     for (let i = 0; i < str.length; i++) {
       setTimeout(() => {
         set_str((x) => x + str.charAt(i));
-        this.display_sound(i);
+        this.display_sound(str.charAt(i));
       }, this.letterTime(i) + this.previous_time());
     }
-    this.store.push(str.length);
+    //TODO display new line sound with last timeout
+    this.next_time += str.length;
   }
 }
