@@ -15,7 +15,7 @@ export function WhoRU() {
   const [title1, set_title1] = createSignal("");
   const [hidden, set_hidden] = createSignal(false);
 
-  const typist = new Typist(250);
+  const typist = new Typist(50);
 
   const display = () => {
     typist.type(info.name, set_name);
@@ -36,7 +36,7 @@ export function WhoRU() {
         <button
           class="text-white h-56 w-[100%] bg-slate-700 text-7xl"
           onclick={() => {
-            window.scroll({top : 0});
+            window.scroll({ top: 0 });
             set_hidden(true);
             display();
           }}
@@ -46,7 +46,7 @@ export function WhoRU() {
       }
     >
       <div class="flex">
-        <img src="" alt="profile" class="inline-block w-[15%]"/>
+        <img src="" alt="profile" class="inline-block w-[15%]" />
         <section class="w-[85%] text-white h-56 bg-slate-700 grid grid-cols-1 grid-rows-5 justify-left justify-items-left auto-rows-max">
           <span class="text-2xl mx-20">{name()}</span>
           <span class="text-2xl mx-20">{job()}</span>

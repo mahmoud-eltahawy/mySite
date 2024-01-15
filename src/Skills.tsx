@@ -57,7 +57,7 @@ export function Skills() {
     { name: "#js_for_frontend_only", page: "" },
   ]);
 
-  const typist = new Typist(220);
+  const typist = new Typist(40);
 
   return (
     <Show

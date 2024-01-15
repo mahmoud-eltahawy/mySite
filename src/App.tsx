@@ -1,6 +1,6 @@
 import { WhoRU } from "./WhoRU";
 import { Skills } from "./Skills";
-import { Show, createSignal } from "solid-js";
+import { createSignal, Show } from "solid-js";
 import A from "./tiny/A";
 
 function App() {
@@ -8,15 +8,15 @@ function App() {
     <>
       <WhoRU />
       <Skills />
-      <WorkExample/>
+      <WorkExample />
     </>
   );
 }
 
 function WorkExample() {
-  const [hidden,set_hidden] = createSignal(true);
+  const [hidden, set_hidden] = createSignal(true);
   return (
-    <Show 
+    <Show
       when={!hidden()}
       fallback={
         <button
@@ -27,15 +27,15 @@ function WorkExample() {
         >
           Example of my previous work
         </button>
-    }
-      >
+      }
+    >
       <section class="grid grid-cols-2 grid-rows-1 justify-center justify-items-center h-56 bg-slate-700 text-white  text-xl">
-        <A 
-          href="github.com/mahmoud-eltahawy/excel-network"
-        >Unimplemented yet example</A>
+        <A href="github.com/mahmoud-eltahawy/excel-network">
+          Unimplemented yet example
+        </A>
       </section>
     </Show>
-  )
+  );
 }
 
 export default App;
