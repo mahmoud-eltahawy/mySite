@@ -34,7 +34,7 @@ export function WhoRU() {
       when={hidden()}
       fallback={
         <button
-          class="text-white h-56 w-[100%] bg-slate-700 text-7xl"
+          class="h-56 w-[100%] text-7xl"
           onclick={() => {
             window.scroll({ top: 0 });
             set_hidden(true);

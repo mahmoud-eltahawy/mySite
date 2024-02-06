@@ -1,24 +1,38 @@
-import { createSignal, For, Show, Signal } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
 import A from "./tiny/A";
 import { Typist } from "./Typist";
 
-type LinkedTech = {
-  name: string;
-  page: string;
-};
-
 class Language {
-  basic: LinkedTech;
-  ecosystem: LinkedTech[];
-  ecosystem_signals: Signal<string>[];
-  name_signal: Signal<string>;
-  constructor(basic: LinkedTech, ecosystem: LinkedTech[]) {
+  /**
+  *@type {import("./types").LinkedTech} basic
+  */
+  basic;
+  /**
+  *@type {import("./types").LinkedTech[]} ecosystem
+  */
+  ecosystem;
+  /**
+  *@type {import("solid-js").Signal<string>[]} ecosystem_signals
+  */
+  ecosystem_signals;
+  /**
+  *@type {import("solid-js").Signal<string>} name_signal
+  */
+  name_signal;
+  /**
+  *@param {import("./types").LinkedTech}basic
+  *@param {import("./types").LinkedTech[]}ecosystem
+  */
+  constructor(basic, ecosystem) {
     this.basic = basic;
     this.ecosystem = ecosystem;
     this.ecosystem_signals = ecosystem.map(() => createSignal(""));
     this.name_signal = createSignal("");
   }
-  display(typist: Typist) {
+  /**
+  *@param {import("./Typist").Typist}typist
+  */
+  display(typist) {
     typist.type(this.basic.name, this.name_signal[1]);
     for (let i = 0; i < this.ecosystem.length; i++) {
       typist.type(
@@ -27,7 +41,10 @@ class Language {
       );
     }
   }
-  ecosystem_member = (index: number) => {
+  /**
+  *@param {number}index
+  */
+  ecosystem_member = (index) => {
     return this.ecosystem_signals[index][0]();
   };
 }
@@ -35,7 +52,7 @@ class Language {
 export function Skills() {
   const [hidden, set_hidden] = createSignal(true);
 
-  const rust: Language = new Language(
+  const rust = new Language(
     {
       name: "* Rust",
       page: "rust-lang.org",
@@ -47,7 +64,7 @@ export function Skills() {
       { name: "... more", page: "" },
     ],
   );
-  const typescript: Language = new Language({
+  const typescript = new Language({
     name: "* Javascript/Typescript",
     page: "typescriptlang.org",
   }, [
@@ -64,7 +81,7 @@ export function Skills() {
       when={!hidden()}
       fallback={
         <button
-          class="text-white h-56 w-[100%] bg-slate-700 text-7xl"
+          class="h-56 w-[100%] text-7xl"
           onclick={() => {
             set_hidden(false);
             rust.display(typist);
@@ -83,7 +100,11 @@ export function Skills() {
   );
 }
 
-function LanguageComponent({ language }: { language: Language }) {
+/**
+*@param {Object} param0 
+* @param {Language} param0.language 
+*/
+function LanguageComponent({ language }) {
   return (
     <div class="mx-5">
       <h2 class="text-2xl">
