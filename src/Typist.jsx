@@ -9,31 +9,38 @@ export class Typist {
   /**
   *@type {number}next_time
   */
-  next_time;
+  #type_letters_number;
   /**
   *@type {number} 
   */
-  miliseconds_between_letters;
+  #miliseconds_between_letters;
   /**
   *@param {number}miliseconds
   */
   constructor(miliseconds) {
-    this.next_time = 0;
-    this.miliseconds_between_letters = miliseconds;
+    this.#type_letters_number = 0;
+    this.#miliseconds_between_letters = miliseconds;
   }
   /**
-  *@param {number}i
+  *@param {number}n
   *@returns {number}
   */
-  letterTime(i) {
-    return i * this.miliseconds_between_letters;
+  #calculateNTime(n) {
+    return n * this.#miliseconds_between_letters;
+  }
+  /**
+  *@param {number}n
+  *@returns {number}
+  */
+  #calculateNextTime(n) {
+    return this.#calculateNTime(n) + this.#previous_time();
   }
   /**
   *@returns {number}
   */
-  previous_time() {
-    if (this.next_time) {
-      return this.letterTime(this.next_time);
+  #previous_time() {
+    if (this.#type_letters_number) {
+      return this.#calculateNTime(this.#type_letters_number);
     } else {
       return 0;
     }
@@ -41,6 +48,7 @@ export class Typist {
   /**
   *@param {string}str
   *@param {import("solid-js").Setter<string>}set_str
+  *@returns {number}
   */
   type(
     str,
@@ -49,8 +57,9 @@ export class Typist {
     for (let i = 0; i < str.length; i++) {
       setTimeout(() => {
         set_str((x) => x + str.charAt(i));
-      }, this.letterTime(i) + this.previous_time());
+      }, this.#calculateNextTime(i));
     }
-    this.next_time += str.length;
+    this.#type_letters_number += str.length;
+    return this.#previous_time();
   }
 }

@@ -47,7 +47,7 @@ export function WhoRU() {
     >
       <div class="flex">
         <img src="" alt="profile" class="inline-block w-[15%]" />
-        <section class="w-[85%] text-white h-56 bg-slate-700 grid grid-cols-1 grid-rows-5 justify-left justify-items-left auto-rows-max">
+        <section class="w-[85%] h-56 grid grid-cols-1 grid-rows-5 justify-left justify-items-left auto-rows-max">
           <span class="text-2xl mx-20">{name()}</span>
           <span class="text-2xl mx-20">{job()}</span>
           <span class="text-3xl mx-20">{title1()}</span>

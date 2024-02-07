@@ -2,7 +2,7 @@ import { createSignal, For, Show } from "solid-js";
 import A from "./tiny/A";
 import { Typist } from "./Typist";
 
-class Language {
+class SkillsCollection {
   /**
   *@type {import("./types").LinkedTech} basic
   */
@@ -52,27 +52,41 @@ class Language {
 export function Skills() {
   const [hidden, set_hidden] = createSignal(true);
 
-  const rust = new Language(
+  const familiarWith = new SkillsCollection(
     {
-      name: "* Rust",
+      name : "Familiar With",
+    },[
+      {name : "Linux"}, 
+      {name : "Nixos",page : "nixos.org"}, 
+      {name : "Archlinux",page : "archlinux.org"}, 
+      {name : "Docker", page : "www.docker.com"}, 
+      {name : "Postgresql", page : "www.postgresql.org"}, 
+    ]
+  );
+
+  const rust = new SkillsCollection(
+    {
+      name: "* Rust {backend oriented}",
       page: "rust-lang.org",
     },
     [
       { name: "* Actix-web", page: "actix.rs" },
+      { name: "* Tokio", page: "tokio.rs" },
       { name: "* Tauri", page: "tauri.app" },
       { name: "* Wasm => Leptos", page: "leptos.dev" },
-      { name: "... more", page: "" },
+      { name: "... more" },
     ],
   );
-  const typescript = new Language({
-    name: "* Javascript/Typescript",
+  const typescript = new SkillsCollection({
+    name: "* Javascript/Typescript {frontend oriented}",
     page: "typescriptlang.org",
   }, [
     { name: "* Solidjs", page: "solidjs.com" },
     { name: "* Tailwindcss", page: "tailwindcss.com" },
-    { name: "* Js vanilla", page: "" },
-    { name: "#js_for_frontend_only", page: "" },
+    { name: "* Css" },
+    { name: "* Html" },
   ]);
+ 
 
   const typist = new Typist(40);
 
@@ -86,15 +100,17 @@ export function Skills() {
             set_hidden(false);
             rust.display(typist);
             typescript.display(typist);
+            familiarWith.display(typist)
           }}
         >
           What skills does i have?
         </button>
       }
     >
-      <section class="grid grid-cols-2 grid-rows-1 justify-center justify-items-center h-56 bg-slate-700 text-white  text-xl">
+      <section class="grid grid-cols-3 grid-rows-1 justify-center justify-items-center h-56 text-xl">
         <LanguageComponent language={rust} />
         <LanguageComponent language={typescript} />
+        <LanguageComponent language={familiarWith} />
       </section>
     </Show>
   );
@@ -102,7 +118,7 @@ export function Skills() {
 
 /**
 *@param {Object} param0 
-* @param {Language} param0.language 
+* @param {SkillsCollection} param0.language 
 */
 function LanguageComponent({ language }) {
   return (

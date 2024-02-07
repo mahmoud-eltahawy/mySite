@@ -4,7 +4,7 @@ import { WorkExample } from "./WorkExample";
 
 function App() {
   return (
-    <section class="justify-center justify-items-center bg-slate-700 text-white">
+    <section>
       <WhoRU/>
       <Skills/>
       <WorkExample/>
