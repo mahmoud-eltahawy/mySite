@@ -39,7 +39,7 @@ export function WorkExample() {
     }
 
     const display = () => {
-        typist.type("Hints of project look",set_title1)
+        typist.type("Hints",set_title1)
         typist.type("Description",set_title2)
         typist.type("why this project",set_title4)
         typist.type("Project name",set_title5)
@@ -54,6 +54,7 @@ export function WorkExample() {
     };
 
     return (
+        <section class="m-2 border-cyan-400 border-2 rounded-xl">
         <Show
             when={!hidden()}
             fallback={<button
@@ -66,7 +67,7 @@ export function WorkExample() {
                 Example of my previous work
             </button>}
         >
-            <h1>{title1()}</h1>
+            <h1 class="mx-2">{title1()}</h1>
             <section class="grid grid-cols-2">
                 <video width="100%" controls>
                     <source src="toggle_list.webm" type="video/webm" />
@@ -115,5 +116,6 @@ export function WorkExample() {
                 a.remove();
             }} class="border-lime-400">click for the Source code</button>
         </Show>
+        </section>
     );
 }

@@ -30,6 +30,7 @@ export function WhoRU() {
   };
 
   return (
+    <section class="m-2 border-cyan-400 border-2 rounded-xl">
     <Show
       when={hidden()}
       fallback={
@@ -46,7 +47,7 @@ export function WhoRU() {
       }
     >
       <div class="flex">
-        <img src="" alt="profile" class="inline-block w-[15%]" />
+        <img src="profile.jpeg" alt="profile" class="inline-block w-[15%] rounded-full" />
         <section class="w-[85%] h-56 grid grid-cols-1 grid-rows-5 justify-left justify-items-left auto-rows-max">
           <span class="text-2xl mx-20">{name()}</span>
           <span class="text-2xl mx-20">{job()}</span>
@@ -63,5 +64,6 @@ export function WhoRU() {
         </section>
       </div>
     </Show>
+    </section>
   );
 }

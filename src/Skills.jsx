@@ -91,6 +91,7 @@ export function Skills() {
   const typist = new Typist(40);
 
   return (
+    <section class="m-2 border-cyan-400 border-2 rounded-xl">
     <Show
       when={!hidden()}
       fallback={
@@ -113,6 +114,7 @@ export function Skills() {
         <LanguageComponent language={familiarWith} />
       </section>
     </Show>
+  </section>
   );
 }
 
