@@ -1,43 +1,42 @@
-
 /**
-*the class responsible for typing letter by letter
-*@class
-*@constructor
-*@public
-*/
+ * the class responsible for typing letter by letter
+ * @class
+ * @constructor
+ * @public
+ */
 export class Typist {
   /**
-  *@type {number}next_time
-  */
+   * @type {number}next_time
+   */
   #type_letters_number;
   /**
-  *@type {number} 
-  */
+   * @type {number}
+   */
   #miliseconds_between_letters;
   /**
-  *@param {number}miliseconds
-  */
+   * @param {number}miliseconds
+   */
   constructor(miliseconds) {
     this.#type_letters_number = 0;
     this.#miliseconds_between_letters = miliseconds;
   }
   /**
-  *@param {number}n
-  *@returns {number}
-  */
+   * @param {number}n
+   * @returns {number}
+   */
   #calculateNTime(n) {
     return n * this.#miliseconds_between_letters;
   }
   /**
-  *@param {number}n
-  *@returns {number}
-  */
+   * @param {number}n
+   * @returns {number}
+   */
   #calculateNextTime(n) {
     return this.#calculateNTime(n) + this.#previous_time();
   }
   /**
-  *@returns {number}
-  */
+   * @returns {number}
+   */
   #previous_time() {
     if (this.#type_letters_number) {
       return this.#calculateNTime(this.#type_letters_number);
@@ -46,10 +45,10 @@ export class Typist {
     }
   }
   /**
-  *@param {string}str
-  *@param {import("solid-js").Setter<string>}set_str
-  *@returns {number}
-  */
+   * @param {string}str
+   * @param {import("solid-js").Setter<string>}set_str
+   * @returns {number}
+   */
   type(
     str,
     set_str,

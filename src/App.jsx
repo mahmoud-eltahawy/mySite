@@ -5,9 +5,9 @@ import { WorkExample } from "./WorkExample";
 function App() {
   return (
     <section>
-      <WhoRU/>
-      <Skills/>
-      <WorkExample/>
+      <WhoRU />
+      <Skills />
+      <WorkExample />
     </section>
   );
 }

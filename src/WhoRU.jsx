@@ -31,39 +31,45 @@ export function WhoRU() {
 
   return (
     <section class="m-2 border-cyan-400 border-2 rounded-xl">
-    <Show
-      when={hidden()}
-      fallback={
-        <button
-          class="h-56 w-[100%] text-7xl"
-          onclick={() => {
-            window.scroll({ top: 0 });
-            set_hidden(true);
-            display();
-          }}
-        >
-          Who am i?
-        </button>
-      }
-    >
-      <div class="flex">
-        <img src="profile.jpeg" alt="profile" class="inline-block w-[15%] rounded-full" />
-        <section class="w-[85%] h-56 grid grid-cols-1 grid-rows-5 justify-left justify-items-left auto-rows-max">
-          <span class="text-2xl mx-20">{name()}</span>
-          <span class="text-2xl mx-20">{job()}</span>
-          <span class="text-3xl mx-20">{title1()}</span>
-          <For each={info.serivces}>
-            {(_, index) => {
-              return (
-                <span class="text-xl mx-24">
-                  {services_signals[index()][0]()}
-                </span>
-              );
+      <Show
+        when={hidden()}
+        fallback={
+          <button
+            class="h-56 w-[100%] text-5xl sm:text-7xl"
+            onclick={() => {
+              scroll({ top: 0 });
+              set_hidden(true);
+              display();
             }}
-          </For>
-        </section>
-      </div>
-    </Show>
+          >
+            Who am i?
+          </button>
+        }
+      >
+        <div class="flex">
+          <img
+            src="me.jpg"
+            alt="profile"
+            class="opacity-0 img-animated inline-block w-[30%] object-contain rounded-full"
+          />
+          <section class="text-sm sm:text-3xl w-[85%] h-56 grid grid-cols-1 grid-rows-5 justify-left justify-items-left auto-rows-max">
+            <span class="m-2 sm:mt-5">{name()}</span>
+            <span class="m-2 sm:mt-5">{job()}</span>
+            <span class="m-2 sm:mt-5">{title1()}</span>
+            <ol class="text-base sm:text-xl sm:mt-5">
+              <For each={info.serivces}>
+                {(_, index) => {
+                  return (
+                    <li class="sm:text-xl mx-10 sm:mt-5">
+                      {services_signals[index()][0]()}
+                    </li>
+                  );
+                }}
+              </For>
+            </ol>
+          </section>
+        </div>
+      </Show>
     </section>
   );
 }
