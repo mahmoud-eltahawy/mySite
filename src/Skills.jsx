@@ -65,25 +65,25 @@ export function Skills() {
 
   const rust = new SkillsCollection(
     {
-      name: "* Rust {backend oriented}",
+      name: "Rust",
       page: "rust-lang.org",
     },
     [
-      { name: "* Actix-web", page: "actix.rs" },
-      { name: "* Tokio", page: "tokio.rs" },
-      { name: "* Tauri", page: "tauri.app" },
-      { name: "* Wasm => Leptos", page: "leptos.dev" },
-      { name: "... more" },
+      { name: "Actix-web", page: "actix.rs" },
+      { name: "Tokio", page: "tokio.rs" },
+      { name: "Serde", page: "serde.rs" },
+      { name: "Tauri", page: "tauri.app" },
+      { name: "Leptos", page: "leptos.dev" },
     ],
   );
   const typescript = new SkillsCollection({
-    name: "* Javascript/Typescript {frontend oriented}",
+    name: "Js/Ts",
     page: "typescriptlang.org",
   }, [
-    { name: "* Solidjs", page: "solidjs.com" },
-    { name: "* Tailwindcss", page: "tailwindcss.com" },
-    { name: "* Css" },
-    { name: "* Html" },
+    { name: "Solidjs", page: "solidjs.com" },
+    { name: "Tailwindcss", page: "tailwindcss.com" },
+    { name: "Css" },
+    { name: "Html" },
   ]);
 
   const typist = new Typist(40);
@@ -122,23 +122,23 @@ export function Skills() {
  */
 function LanguageComponent({ language }) {
   return (
-    <div class="mx-5">
-      <h2 class="text-xs sm:text-2xl">
+    <div class="mx-5 grid grid-cols-1 place-items-center">
+      <span class="text-xs sm:text-2xl border-cyan-100">
         <A href={language.basic.page}>{"\t"} {language.name_signal[0]()}</A>
-      </h2>
-      <ol class="mx-5 justify-center justify-items-center">
+      </span>
+      <div class="sm:mx-5 grid grid-cols-1 sm:grid-cols-2 ">
         <For each={language.ecosystem}>
           {({ page }, index) => {
             return (
-              <li>
+              <span class="m-2">
                 <A href={page}>
                   {"\t"} {language.ecosystem_member(index())}
                 </A>
-              </li>
+              </span>
             );
           }}
         </For>
-      </ol>
+      </div>
     </div>
   );
 }

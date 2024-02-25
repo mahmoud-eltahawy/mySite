@@ -2,13 +2,13 @@ import { createSignal, For, Show } from "solid-js";
 import { Typist } from "./Typist";
 
 const info = {
-  title1: "Services : ",
-  name: "Name : Mahmoud Gamal Eltahawy",
-  job: "Job : Fullstack Developer",
+  title1: "i can deliver : ",
+  name: "I am Mahmoud Gamal Eltahawy",
+  job: "a Fullstack Developer",
   serivces: ["- Desktop Apps", "- Web Apps"],
 };
 
-export function WhoRU() {
+export function Whoami() {
   const [name, set_name] = createSignal("");
   const [job, set_job] = createSignal("");
   const services_signals = info.serivces.map((_) => createSignal(""));
@@ -42,7 +42,7 @@ export function WhoRU() {
               display();
             }}
           >
-            Who am i?
+            whoami ?
           </button>
         }
       >
@@ -52,11 +52,11 @@ export function WhoRU() {
             alt="profile"
             class="opacity-0 img-animated inline-block w-[30%] object-contain rounded-full"
           />
-          <section class="text-sm sm:text-3xl w-[85%] h-56 grid grid-cols-1 grid-rows-5 justify-left justify-items-left auto-rows-max">
-            <span class="m-2 sm:mt-5">{name()}</span>
-            <span class="m-2 sm:mt-5">{job()}</span>
-            <span class="m-2 sm:mt-5">{title1()}</span>
-            <ol class="text-base sm:text-xl sm:mt-5">
+          <section class="sm:mx-5 text-sm sm:text-3xl w-[85%] h-56 grid grid-cols-1 justify-left justify-items-left auto-rows-max">
+            <p class="m-2 sm:my-4 sm:mt-5">{name()}</p>
+            <p class="m-2 sm:my-4 sm:mt-5">{job()}</p>
+            <p class="m-2 sm:my-4 sm:mt-5">{title1()}</p>
+            <ol class="text-base sm:text-xl sm:my-14 sm:mt-5">
               <For each={info.serivces}>
                 {(_, index) => {
                   return (

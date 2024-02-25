@@ -1,11 +1,11 @@
-import { WhoRU } from "./WhoRU";
+import { Whoami } from "./Whoami";
 import { Skills } from "./Skills";
 import { WorkExample } from "./WorkExample";
 
 function App() {
   return (
     <section>
-      <WhoRU />
+      <Whoami/>
       <Skills />
       <WorkExample />
     </section>
