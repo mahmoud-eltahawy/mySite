@@ -1,4 +1,4 @@
-import { createSignal, For, Show } from "solid-js";
+import { createSignal, For } from "solid-js";
 import { Typist } from "./Typist";
 
 const whyThisProject = [
@@ -17,10 +17,7 @@ const projectFeatures = [
 ];
 
 export function WorkExample() {
-  const [hidden, set_hidden] = createSignal(true);
   const typist = new Typist(10);
-  const [title1, set_title1] = createSignal("");
-  const [title2, set_title2] = createSignal("");
   const [title3, set_title3] = createSignal("");
   const [title4, set_title4] = createSignal("");
   const [title5, set_title5] = createSignal("");
@@ -37,87 +34,50 @@ export function WorkExample() {
     }, time);
   }
 
-  const display = () => {
-    typist.type("Hints", set_title1);
-    typist.type("Description", set_title2);
-    typist.type("why this project", set_title4);
-    typist.type("Project name", set_title5);
-    typist.type("Private Excel Network", setProjectName);
-    for (let i = 0; i < whyThisProject.length; i++) {
-      scroll_by(typist.type(whyThisProject[i], whyThisProjectSignals[i][1]));
-    }
-    typist.type("Project Features", set_title3);
-    for (let i = 0; i < projectFeatures.length; i++) {
-      scroll_by(typist.type(projectFeatures[i], projectFeaturesSignals[i][1]));
-    }
-  };
+  typist.type("why this project", set_title4);
+  typist.type("Project name", set_title5);
+  typist.type("Private Excel Network", setProjectName);
+  for (let i = 0; i < whyThisProject.length; i++) {
+    scroll_by(typist.type(whyThisProject[i], whyThisProjectSignals[i][1]));
+  }
+  typist.type("Project Features", set_title3);
+  for (let i = 0; i < projectFeatures.length; i++) {
+    scroll_by(typist.type(projectFeatures[i], projectFeaturesSignals[i][1]));
+  }
 
   return (
-    <section class="m-2 border-cyan-400 border-2 rounded-xl">
-      <Show
-        when={!hidden()}
-        fallback={
-          <button
-            class="h-56 w-[100%] text-2xl ms:text-7xl"
-            onclick={() => {
-              set_hidden(false);
-              display();
-            }}
-          >
-            Example of my previous work
-          </button>
-        }
-      >
-        <button
-          onclick={() => {
-            const a = document.createElement("a");
-            a.href = "https://github.com/mahmoud-eltahawy/excel-network";
-            a.click();
-            a.remove();
-          }}
-          class="border-lime-400"
-        >
-          click for the Source code
-        </button>
-        <h1 class="mx-2">{title1()}</h1>
-        <section class="grid grid-cols-2">
-          <video width="100%" controls>
-            <source src="toggle_list.webm" type="video/webm" />
-            Your browser does not support the video tag.
-          </video>
-          <video width="100%" controls>
-            <source src="search.webm" type="video/webm" />
-            Your browser does not support the video tag.
-          </video>
-        </section>
-        <h1>{title2()}</h1>
-        <table class="mx-20 border-separate border-spacing-2 border border-slate-500 w-[90%]">
-          <tbody>
-            <tr>
-              <td>{title5()}</td>
-              <td>{projectName()}</td>
-            </tr>
-            <tr>
-              <td>{title4()}</td>
-              <td>
-                <ol>
-                  <For each={whyThisProjectSignals}>
-                    {(item, _) => <li>{item[0]()}</li>}
-                  </For>
-                </ol>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <section>
-          <h1>{title3()}</h1>
-          <ol class="my-5 mx-20">
-            <For each={projectFeaturesSignals}>
-              {(item, _) => <li>{item[0]()}</li>}
-            </For>
-          </ol>
-        </section>
-      </Show>
+    <section class="border-cyan-400 rounded-xl">
+      <section class="grid grid-cols-2">
+        <video width="100%" controls>
+          <source src="toggle_list.webm" type="video/webm"/>
+          Your browser does not support the video tag.
+        </video>
+        <video width="100%" controls>
+          <source src="search.webm" type="video/webm"/>
+          Your browser does not support the video tag.
+        </video>
+      </section>
+      <a  class="mx-10 my-5 p-5 border-2 rounded-full hover:text-2xl" href ="https://github.com/mahmoud-eltahawy/excel-network">
+        click for the Source code
+      </a>
+      <section class="grid grid-cols-2 mx-20 border-2 border w-[90%] p-10 rounded-full">
+            <h3>{title5()}</h3>
+            <h3>{projectName()}</h3>
+            <h3 class="my-20">{title4()}</h3>
+            <ol class="my-5">
+              <For each={whyThisProjectSignals}>
+                {(item, _) => <li>{item[0]()}</li>}
+              </For>
+            </ol>
+      </section>
+      <section class="mx-20 my-10 border-2 p-10 rounded-full">
+        <h1>{title3()}</h1>
+        <ol class="mx-10">
+          <For each={projectFeaturesSignals}>
+            {(item, _) => <li>{item[0]()}</li>}
+          </For>
+        </ol>
+      </section>
     </section>
   );
 }

@@ -1,4 +1,4 @@
-import { createSignal, For, Show } from "solid-js";
+import { createSignal, For  } from "solid-js";
 import A from "./tiny/A";
 import { Typist } from "./Typist";
 
@@ -50,8 +50,6 @@ class SkillsCollection {
 }
 
 export function Skills() {
-  const [hidden, set_hidden] = createSignal(true);
-
   const familiarWith = new SkillsCollection(
     {
       name: "Familiar With",
@@ -65,7 +63,7 @@ export function Skills() {
 
   const rust = new SkillsCollection(
     {
-      name: "Rust",
+      name: "Rust Programming Language",
       page: "rust-lang.org",
     },
     [
@@ -77,10 +75,11 @@ export function Skills() {
     ],
   );
   const typescript = new SkillsCollection({
-    name: "Js/Ts",
+    name: "Javascript/Typescript",
     page: "typescriptlang.org",
   }, [
     { name: "Solidjs", page: "solidjs.com" },
+    { name: "React", page: "react.dev" },
     { name: "Tailwindcss", page: "tailwindcss.com" },
     { name: "Css" },
     { name: "Html" },
@@ -88,30 +87,18 @@ export function Skills() {
 
   const typist = new Typist(40);
 
+  
+  rust.display(typist);
+  typescript.display(typist);
+  familiarWith.display(typist);
+
   return (
-    <section class="m-2 border-cyan-400 border-2 rounded-xl">
-      <Show
-        when={!hidden()}
-        fallback={
-          <button
-            class="h-56 w-[100%] text-3xl ms:text-7xl"
-            onclick={() => {
-              set_hidden(false);
-              rust.display(typist);
-              typescript.display(typist);
-              familiarWith.display(typist);
-            }}
-          >
-            What skills does i have?
-          </button>
-        }
-      >
-        <section class="grid grid-cols-3 grid-rows-1 justify-center justify-items-center h-56 text-sm sm:text-xl">
-          <LanguageComponent language={rust} />
-          <LanguageComponent language={typescript} />
-          <LanguageComponent language={familiarWith} />
-        </section>
-      </Show>
+    <section class="m-2">
+      <section class="grid grid-cols-1 justify-center justify-items-center text-sm sm:text-xl p-20">
+        <LanguageComponent language={rust} />
+        <LanguageComponent language={typescript} />
+        <LanguageComponent language={familiarWith} />
+      </section>
     </section>
   );
 }
@@ -122,7 +109,7 @@ export function Skills() {
  */
 function LanguageComponent({ language }) {
   return (
-    <div class="mx-5 grid grid-cols-1 place-items-center">
+    <div class="w-[50%] m-10 grid grid-cols-1 place-items-center border-cyan-400 border-2 rounded-full p-10">
       <span class="text-xs sm:text-2xl border-cyan-100">
         <A href={language.basic.page}>{"\t"} {language.name_signal[0]()}</A>
       </span>
