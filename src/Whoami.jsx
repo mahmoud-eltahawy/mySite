@@ -1,11 +1,11 @@
-import { createSignal, For, Show } from "solid-js";
+import { createSignal, For } from "solid-js";
 import { Typist } from "./Typist";
 
 const info = {
   title1: "i can deliver : ",
-  name: "I am Mahmoud Gamal Eltahawy",
-  job: "a Fullstack Developer",
-  serivces: ["- Desktop Apps", "- Web Apps"],
+  name: "I am mahmoud gamal eltahawy",
+  job: "a fullstack developer",
+  serivces: ["- desktop apps", "- web apps"],
 };
 
 export function Whoami() {
@@ -27,12 +27,13 @@ export function Whoami() {
   }
 
   return (
-    <section class="m-2 border-cyan-400 border-2 rounded-xl">
+    <section class="m-2">
       <div class="flex">
         <img
+          loading="eager"
           src="me.jpg"
           alt="profile"
-          class="img-animated inline-block w-[30%] object-contain rounded-full"
+          class="my-[-170px] img-animated inline-block w-[30%] object-contain rounded-full"
         />
         <section class="sm:mx-5 text-sm sm:text-3xl w-[85%] h-56 grid grid-cols-1 justify-left justify-items-left auto-rows-max">
           <p class="m-2 sm:my-4 sm:mt-5">{name()}</p>

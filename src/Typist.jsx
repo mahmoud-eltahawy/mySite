@@ -5,20 +5,20 @@
  * @public
  */
 export class Typist {
-  /**
-   * @type {number}next_time
-   */
+  /** @type {number}*/
   #type_letters_number;
-  /**
-   * @type {number}
-   */
+  /**@type {number}*/
   #miliseconds_between_letters;
+  /**@type {number}*/
+  #begin_after;
   /**
    * @param {number}miliseconds
+   * @param {number}begin
    */
-  constructor(miliseconds) {
+  constructor(miliseconds,begin = 0) {
     this.#type_letters_number = 0;
     this.#miliseconds_between_letters = miliseconds;
+    this.#begin_after = begin;
   }
   /**
    * @param {number}n
@@ -32,11 +32,9 @@ export class Typist {
    * @returns {number}
    */
   #calculateNextTime(n) {
-    return this.#calculateNTime(n) + this.#previous_time();
+    return this.#calculateNTime(this.#begin_after) + this.#calculateNTime(n) + this.#previous_time();
   }
-  /**
-   * @returns {number}
-   */
+  /**@returns {number}*/
   #previous_time() {
     if (this.#type_letters_number) {
       return this.#calculateNTime(this.#type_letters_number);
