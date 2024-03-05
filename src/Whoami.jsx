@@ -32,7 +32,7 @@ export function Whoami() {
         <img
           src="me.jpg"
           alt="profile"
-          class="opacity-0 img-animated inline-block w-[30%] object-contain rounded-full"
+          class="img-animated inline-block w-[30%] object-contain rounded-full"
         />
         <section class="sm:mx-5 text-sm sm:text-3xl w-[85%] h-56 grid grid-cols-1 justify-left justify-items-left auto-rows-max">
           <p class="m-2 sm:my-4 sm:mt-5">{name()}</p>
