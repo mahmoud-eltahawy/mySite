@@ -33,9 +33,9 @@ export function Whoami() {
           loading="eager"
           src="me.jpg"
           alt="profile"
-          class="my-[-170px] img-animated inline-block w-[30%] object-contain rounded-full"
+          class="img-animated w-[30%] rounded-full"
         />
-        <section class="sm:mx-5 text-sm sm:text-3xl w-[85%] h-56 grid grid-cols-1 justify-left justify-items-left auto-rows-max">
+        <section class="my-40 sm:mx-5 text-sm sm:text-3xl w-[85%] h-56 grid grid-cols-1 justify-left justify-items-left auto-rows-max">
           <p class="m-2 sm:my-4 sm:mt-5">{name()}</p>
           <p class="m-2 sm:my-4 sm:mt-5">{job()}</p>
           <p class="m-2 sm:my-4 sm:mt-5">{title1()}</p>
