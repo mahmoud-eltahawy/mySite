@@ -1,28 +1,27 @@
-## Usage
+# Angdemo
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.1.
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+## Development server
 
-## Available Scripts
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-In the project directory, you can run:
+## Code scaffolding
 
-### `npm run dev`
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+## Build
 
-### `npm run build`
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
+## Running unit tests
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Deployment
+## Running end-to-end tests
 
-Learn more about deploying your application with the [documentations](https://vitejs.dev/guide/static-deploy.html)
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
